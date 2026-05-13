@@ -6,7 +6,7 @@ A full-stack travel booking platform inspired by Airbnb where users can explore 
 
 ## 🚀 Live Demo
 
-https://your-render-link.onrender.com
+https://wanderlust-project-r3lj.onrender.com
 
 ---
 
