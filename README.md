@@ -1,2 +1,4 @@
 # WanderLust_Project
-Airbnb-inspired full-stack travel booking platform built with Node.js, Express, MongoDB, and EJS.
+A full-stack travel booking platform inspired by Airbnb where users can explore destinations, create listings, save favorites, and book stays.
+
+#2🚀 Live Demo
