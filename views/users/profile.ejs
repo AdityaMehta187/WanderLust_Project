@@ -1,0 +1,221 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+
+    <div class="mb-4">
+        <h1 class="fw-bold">My Profile</h1>
+        <p class="text-muted">
+            Welcome back, <%= user.username %>
+        </p>
+    </div>
+
+    <div class="card p-4 mb-4 shadow-sm">
+        <h4>User Information</h4>
+
+        <p><b>Username:</b> <%= user.username %></p>
+        <p><b>Email:</b> <%= user.email %></p>
+    </div>
+
+    <div class="row mb-4">
+
+    <div class="col-lg-4 col-md-6 col-12 mb-3">
+        <div class="card shadow-sm border-0 p-3 text-center">
+
+            <h5 class="text-muted">Listings</h5>
+
+            <h2 class="fw-bold text-danger">
+                <%= userListings.length %>
+            </h2>
+
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-12 mb-3">
+        <div class="card shadow-sm border-0 p-3 text-center">
+
+            <h5 class="text-muted">Reviews</h5>
+
+            <h2 class="fw-bold text-danger">
+                <%= totalReviews %>
+            </h2>
+
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-12 col-12 mb-3">
+        <div class="card shadow-sm border-0 p-3 text-center">
+
+            <h5 class="text-muted">Account</h5>
+
+            <h2 class="fw-bold text-danger">
+                Active
+            </h2>
+
+        </div>
+    </div>
+
+    </div>
+
+    <div class="mb-3">
+        <h3>Your Listings</h3>
+    </div>
+
+    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+
+        <% for(let listing of userListings) { %>
+
+            <div class="card-listing col mb-4">
+
+                <a href="/listings/<%= listing._id %>" class="listing-link">
+
+                    <div class="card h-100">
+
+                        <img 
+                            src="<%= listing.image?.url || 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop' %>" 
+                            class="card-img-top"
+                        >
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                <%= listing.title %>
+                            </h5>
+
+                            <p class="card-text text-muted">
+                                ₹ <%= listing.price?.toLocaleString("en-IN") || "N/A" %>
+                            </p>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        <% } %>
+
+    </div>
+
+    <hr class="my-5">
+
+    <div class="mb-3">
+        <h3>Your Favorites ❤️</h3>
+    </div>
+
+    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+
+        <% if(user.favorites.length > 0) { %>
+
+            <% for(let listing of user.favorites) { %>
+                <% if(listing) { %>
+
+                <div class="card-listing col mb-4">
+
+                    <a href="/listings/<%= listing._id %>" class="listing-link">
+
+                        <div class="card h-100">
+
+                            <img 
+                                src="<%= listing.image?.url || 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop' %>"
+                                class="card-img-top"
+                            >
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">
+                                    <%= listing.title %>
+                                </h5>
+
+                                <p class="card-text text-muted">
+                                    ₹ <%= listing.price?.toLocaleString("en-IN") || "N/A" %>
+                                </p>
+
+                                <form 
+                                    action="/favorites/<%= listing._id %>/remove" 
+                                    method="POST"
+                                >
+                                    <button class="btn btn-sm btn-outline-danger mt-2">
+                                        Remove
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+                <% } %>
+            <% } %>
+        
+        <% } else { %>
+
+            <p class="text-muted">
+                No favorite listings yet.
+            </p>
+
+        <% } %>
+
+    </div>
+
+    <hr class="my-5">
+
+    <div class="mb-3">
+        <h3>Your Bookings 🏨</h3>
+    </div>
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
+
+        <% if(bookings.length > 0) { %>
+
+            <% for(let booking of bookings) { %>
+
+                <% if(booking.listing) { %>
+
+                    <div class="col mb-4">
+
+                        <div class="card h-100 shadow-sm border-0">
+                        <img 
+                            src="<%= booking.listing.image?.url || 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop' %>"
+                            class="card-img-top"
+                        >
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                <%= booking.listing.title %>
+                            </h5>
+
+                            <p class="card-text">
+                                <b>Check In:</b>
+                                <%= booking.checkIn.toDateString() %>
+                            </p>
+
+                            <p class="card-text">
+                                <b>Check Out:</b>
+                                <%= booking.checkOut.toDateString() %>
+                            </p>
+
+                            <p class="card-text">
+                                <b>Guests:</b>
+                                <%= booking.guests %>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <% } %>
+
+            <% } %>
+
+        <% } else { %>
+
+            <p class="text-muted">
+                No bookings yet.
+            </p>
+
+        <% } %>
+
+    </div>
+
+</div>

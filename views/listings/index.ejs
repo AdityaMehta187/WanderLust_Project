@@ -1,0 +1,108 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="mb-4">
+
+        <div class="filters mb-4">
+
+            <a href="/listings" class="filter">
+                <i class="fa-solid fa-globe"></i>
+                <p>All</p>
+            </a>
+
+            <a href="/listings/filter/Trending" class="filter">
+                <i class="fa-solid fa-fire"></i>
+                <p>Trending</p>
+            </a>
+
+            <a href="/listings/filter/Rooms" class="filter">
+                <i class="fa-solid fa-bed"></i>
+                <p>Rooms</p>
+            </a>
+
+            <a href="/listings/filter/Iconic Cities" class="filter">
+                <i class="fa-solid fa-city"></i>
+                <p>Cities</p>
+            </a>
+
+            <a href="/listings/filter/Mountains" class="filter">
+                <i class="fa-solid fa-mountain"></i>
+                <p>Mountains</p>
+            </a>
+
+            <a href="/listings/filter/Castles" class="filter">
+                <i class="fa-brands fa-fort-awesome"></i>
+                <p>Castles</p>
+            </a>
+
+            <a href="/listings/filter/Pools" class="filter">
+                <i class="fa-solid fa-water-ladder"></i>
+                <p>Pools</p>
+            </a>
+
+            <a href="/listings/filter/Camping" class="filter">
+                <i class="fa-solid fa-campground"></i>
+                <p>Camping</p>
+            </a>
+
+            <a href="/listings/filter/Farms" class="filter">
+                <i class="fa-solid fa-tractor"></i>
+                <p>Farms</p>
+            </a>
+
+        </div>
+
+        <h1 class="fw-bold">Explore Amazing Places</h1>
+        <p class="text-muted">
+            Discover unique stays and unforgettable experiences around the world.
+        </p>
+    </div>
+
+    <!-- <form action="/listings/new" method="get">
+        <button>Add New List</button>
+    </form> -->
+    <% if(allListings.length > 0) { %>
+    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
+        <% for(let listing of allListings)  { %>
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+        <div class="card col card-listing" style="width: 18rem;">
+            <img 
+                src="<%=  (typeof listing.image === 'string' ? listing.image : listing.image?.url) %>" 
+                class="card-img-top" 
+                alt="listing_image" 
+                style="height: 20rem;">
+
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+                <h5 class="card-title"><%= listing.title %></h5>
+                <p class="card-text text-muted mb-1">
+                    ₹ <%= listing.price?.toLocaleString("en-IN") || "N/A" %> / night
+                </p>
+
+                <p class="text-danger fw-semibold">
+                    <%= listing.category %>
+                </p>
+            </div>
+        </div>
+        </a>
+        <% } %> 
+    </div>
+    <% } else { %>
+
+    <div class="text-center mt-5">
+        <h3>No Listings Found</h3>
+
+        <p class="text-muted">
+            Try searching with a different keyword or explore all listings.
+        </p>
+
+        <a href="/listings" class="btn btn-dark mt-2">
+            Explore Listings
+        </a>
+
+        <a href="/listings/new" class="btn btn-dark mt-3">
+            Add Listing
+        </a>
+    </div>
+
+<% } %>
+</body>
