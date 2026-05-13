@@ -72,7 +72,7 @@ const sessionOptions = {
 
 
 app.get("/", (req, res) => {
-    res.send("Hi This is root site");
+    res.send("/listings");
 });
 
 
