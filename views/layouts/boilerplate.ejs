@@ -19,6 +19,13 @@
       <script src="https://api.mapbox.com/mapbox-gl-js/v3.21.0/mapbox-gl.js"></script>
 </head>
 <body>
+    <!-- Loader -->
+
+    <div id="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    
     <%- include("../includes/navbar.ejs") %>
     
     <div class="container">
@@ -30,5 +37,25 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
     crossorigin="anonymous"></script>
     <script src="/js/script.js"></script>
+
+
+    <script>
+
+        window.addEventListener("load", () => {
+
+            const loader = document.getElementById("loader-wrapper");
+
+            loader.style.opacity = "0";
+
+            setTimeout(() => { 
+
+                loader.style.display = "none";
+
+            }, 400);
+
+        });
+    </script>
+
+
 </body>
 </html>

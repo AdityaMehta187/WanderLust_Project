@@ -65,5 +65,17 @@ router.post("/:id", isLoggedIn, wrapAsync(async(req,res) => {
 }));
 
 
+router.delete("/:id", isLoggedIn, async (req, res) => {
+
+    let { id } = req.params;
+
+    await Booking.findByIdAndDelete(id);
+
+    req.flash("success", "Booking cancelled successfully");
+
+    res.redirect("/profile");
+});
+
+
 
 module.exports = router;

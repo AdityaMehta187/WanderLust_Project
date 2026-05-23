@@ -302,3 +302,240 @@ label.form-label{
     font-size: 0.85rem;
     margin: 0;
 }
+
+
+
+
+
+
+/* LISTING CARDS */
+
+.listing-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.listing-card {
+    border-radius: 1rem !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+}
+
+.listing-img {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+}
+
+/* IMAGE OVERLAY EFFECT */
+
+.card-img-overlay {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.listing-card:hover .card-img-overlay {
+    opacity: 0.1;
+    background-color: white;
+}
+
+/* CARD BODY */
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.card-text {
+    font-size: 0.95rem;
+}
+
+/* TABLET */
+
+@media (max-width: 992px) {
+
+    .listing-img {
+        height: 18rem;
+    }
+
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .listing-img {
+        height: 16rem;
+    }
+
+    .card-body {
+        padding: 0.9rem;
+    }
+
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 576px) {
+
+    .listing-img {
+        height: 11rem;
+    }
+
+    .card-title {
+        font-size: 0.85rem;
+    }
+
+    .card-text {
+        font-size: 0.8rem;
+    }
+
+}
+
+
+
+
+
+
+/* SHOW PAGE */
+
+.show-card {
+    border-radius: 1rem !important;
+    overflow: hidden;
+}
+
+.show-img {
+    width: 100%;
+    height: 24rem;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.show-card {
+    border-radius: 1rem !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.show-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.show-card:hover .show-img {
+    transform: scale(1.03);
+}
+
+/* BUTTONS */
+
+.btns .btn {
+    min-width: 120px;
+}
+
+/* BOOKING SECTION */
+
+.booking-section {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* MAP */
+
+#map {
+    width: 100%;
+    height: 400px;
+    border-radius: 1rem;
+}
+
+/* REVIEW CARDS */
+
+.starability-result {
+    margin-bottom: 0.5rem;
+}
+
+/* TABLET */
+
+@media (max-width: 992px) {
+
+    .show-img {
+        height: 26rem;
+    }
+
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .show-img {
+        height: 18rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    #map {
+        height: 300px;
+    }
+
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 576px) {
+
+    .show-img {
+        height: 14rem;
+    }
+
+    h3, h4 {
+        font-size: 1.2rem;
+    }
+
+    .btns .btn {
+        width: 100%;
+    }
+
+}
+
+
+
+
+/* LOADER */
+
+#loader-wrapper {
+    position: fixed;
+    inset: 0;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.4s ease;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #fe424d;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+
+}

@@ -56,7 +56,11 @@ router.post("/favorites/:id/remove", isLoggedIn, wrapAsync(async(req,res) => {
 
 router.get("/profile", isLoggedIn, wrapAsync(async(req,res) => {
 
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id)
+     .populate({
+        path: "favorites",
+        model: "Listing"
+    });
 
     const userListings = await Listing.find({
         owner: req.user._id
